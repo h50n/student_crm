@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>student_crm</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-4206085843185242755</string>
+			<key>name</key>
+			<string>Default</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK8QDwcIFRYXGBkfICEoLDA0OFUkbnVs
+			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
+			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
+			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
+			HB6hG4AHoR2ACIAJUjI1CdIiIyQlWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNfEBNOU011dGFibGVEaWN0aW9uYXJ5oyQmJ1xOU0RpY3Rpb25h
+			cnlYTlNPYmplY3TSCgspK6EqgAuADdILLS4vWU5TLnN0cmluZ4AM
+			WnN0dWRlbnRfaWTSIiMxMl8QD05TTXV0YWJsZVN0cmluZ6MxMydY
+			TlNTdHJpbmfSIiM1Nl5OU011dGFibGVBcnJheaM1NydXTlNBcnJh
+			edIiIyY5oiYnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAI
+			ABEAGgAjAC0AMgA3AEkATwBWAF4AaQBwAHQAdgB4AHoAfgCAAIIA
+			hACGAIsAkACVAL4AxQDHAMkAywDNAM8A0gDTANgA4wDsAQIBBgET
+			ARwBIQEjASUBJwEsATYBOAFDAUgBWgFeAWcBbAF7AX8BhwGMAY8B
+			oQGkAakAAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABqw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {705.5, 623}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>table</key>
+			<string>students</string>
+			<key>view</key>
+			<string>SP_VIEW_CONTENT</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>DELETE FROM students WHERE first_name= 'rhian'</string>
+		<string>DELETE FROM students WHERE first_name= 'fff'</string>
+		<string>DELETE FROM students WHERE first_name= fff</string>
+		<string>DELETE FROM `student_crm`.`students` WHERE `student_id` = '7'</string>
+		<string>DELETE FROM `student_crm`.`students` WHERE `student_id` = `4`</string>
+		<string>DELETE FROM `student_crm`.`students` WHERE `student_id` = `3`</string>
+		<string>DELETE FROM `student_crm`.`students` WHERE `student_id` = '2'</string>
+		<string>SELECT * FROM users WHERE username = 'test' AND password = 'tes'</string>
+		<string>SELECT * FROM users WHERE username = 'test' AND password = 'test'</string>
+		<string>SELECT * FROM users WHERE username = 'test'</string>
+		<string>SELECT * FROM users WHERE username = `test`</string>
+		<string>SELECT * FROM users WHERE username = `test` AND password =`test`</string>
+		<string>SELECT * FROM users WHERE username = `ddw` AND password =`ddwd`</string>
+		<string>SELECT * WHERE username = `ddw` AND password =`ddwd`</string>
+		<string>WHERE username = `` AND password =``</string>
+		<string>SELECT * WHERE username = `` AND password =``</string>
+		<string>SELECT * WHERE username = `` &amp;&amp; password =``</string>
+		<string>DROP DATABASE student_crm</string>
+		<string>CREATE TABLE `students` (
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(256) DEFAULT NULL,
+  `last_name` varchar(256) DEFAULT NULL,
+  `phone` varchar(256) DEFAULT NULL,
+  `email` varchar(256) DEFAULT NULL,
+  `address` varchar(256) DEFAULT NULL,
+  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</string>
+		<string>CREATE TABLE `users`(
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`first_name` varchar(256) DEFAULT NULL,
+	`last_name` varchar(256) DEFAULT NULL,
+	`password` varchar(256) DEFAULT NULL,
+	`email` varchar(256) DEFAULT NULL,
+	`date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+	 PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

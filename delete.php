@@ -7,7 +7,7 @@
 	<body>
 		<?php 
 			
-			//$student_id = $_GET['id'];
+			$student_id = $_GET['id'];
 			//$first_name = $_GET['first_name'];
 			//$last_name = $_GET['last_name'];
 
@@ -17,8 +17,8 @@
 			$database = new Database;
 			$database -> connect();
 
-			$student_id = 1;
-			$database -> delete_student();
+			//$student_id = 17;
+			$database -> delete_student($student_id);
 
 			$db_name = "student_crm";
 			$db_host = "localhost";

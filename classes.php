@@ -248,23 +248,23 @@
 	}
 
 
- public function delete_student($first_name = 'Mark') {
-  // reads all the details for a student of the corresponding student id
-  //$query = mysqli_query($this->connection, "DELETE `student_crm`.`students` WHERE `first_name` ='".$first_name."'" );
-$query = mysqli_query($this->connection, "DELETE FROM `students` WHERE first_name='jon'" );
-   //$this->array_query = mysqli_fetch_array($query);
+	 public function delete_student($student_id) {
+	  // reads all the details for a student of the corresponding student id
+	  //$query = mysqli_query($this->connection, "DELETE `student_crm`.`students` WHERE `first_name` ='".$first_name."'" );
+		$query = mysqli_query($this->connection, "DELETE FROM `students` WHERE student_id='{$student_id}'" );
+	   //$this->array_query = mysqli_fetch_array($query);
 
-  if (mysqli_affected_rows($this->connection)  >= 1 ) {
-   
-   echo "yeah this workd";
-  
-  } else {
-  
-   echo "nah this didn't work";
-  
-  }
-  
- }
+		  if (mysqli_affected_rows($this->connection)  >= 1 ) {
+		   
+		   echo "yeah this workd";
+		  
+		  } else {
+		  
+		   echo "nah this didn't work";
+		  
+		  }
+	  
+	 }
 
 
 
@@ -303,6 +303,33 @@ $query = mysqli_query($this->connection, "DELETE FROM `students` WHERE first_nam
 		
 	}*/
 
+
+	public function student_table() {
+		// reads all the details for a student of the corresponding student id
+
+		$query = mysqli_query($this->connection, "SELECT * FROM students");
+
+		//$this->array_query = mysqli_fetch_array($query);
+		$array_query2 = mysqli_fetch_array($query, MYSQLI_ASSOC);
+
+		if (mysqli_affected_rows($this->connection)  >= 1 ) {
+			
+			//echo "yeah this workd";
+
+			return $array_query2;
+		
+		} else {
+		
+			echo "nah this didn't work";
+		
+		}
+		
+	}
+
+
+
+
+
 	public function read_student($student_id) {
 		// reads all the details for a student of the corresponding student id
 
@@ -313,6 +340,7 @@ $query = mysqli_query($this->connection, "DELETE FROM `students` WHERE first_nam
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 			
 			echo "yeah this workd";
+
 		
 		} else {
 		
@@ -327,7 +355,8 @@ $query = mysqli_query($this->connection, "DELETE FROM `students` WHERE first_nam
 			//somehow intergrate a read query that sets the default to the exiting becaus
 				// it may overwrite it will bullshit
 		//updates all the details for each of the variables
-		mysqli_query($this->connection,"" );
+		mysqli_query($this->connection,"UPDATE `students` SET `first_name` = '{$first_name}', `last_name` = '{$last_name}', `email` = '{$email}', `address` = '{$address}' WHERE `student_id` = '{$student_id}';");
+
 
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 			

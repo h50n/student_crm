@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.21)
 # Database: student_crm
-# Generation Time: 2015-01-19 01:01:26 +0000
+# Generation Time: 2015-01-19 03:47:35 +0000
 # ************************************************************
 
 
@@ -86,8 +86,11 @@ LOCK TABLES `students` WRITE;
 INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `phone`, `email`, `address`, `date_created`)
 VALUES
 	(1,'mark','Hanson','34343','fefef','dwdwd','2015-01-15 13:28:30'),
-	(17,'','','','','','2015-01-18 23:22:29'),
-	(19,'','','','','','2015-01-18 23:22:42');
+	(19,'ddddd','ddddd','dddd','dddd','ddddd','2015-01-18 23:22:42'),
+	(21,'','','','','','2015-01-19 02:18:07'),
+	(23,'','','','','','2015-01-19 02:18:49'),
+	(24,'ffff',NULL,NULL,NULL,NULL,'2015-01-19 04:15:40'),
+	(25,'ffrf','ffrfrf','frfrfr','frfrf','frfrf','2015-01-19 04:15:46');
 
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
