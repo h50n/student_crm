@@ -10,94 +10,70 @@
 			include_once 'classes.php';
 			$database = new Database;
 			$database -> connect();
+			$result = $database->student_table();
 
-		?>	
+			?>
 
 		<div id = "table">
 
-				<!--update link in table will echo the data of the student via get into the update, delete, etc pages-->
-				<!-- it will dynamically create the links -->
-				<?
-
-
-				//$database->student_table();
-				//$student_table = $database->array_query;
-
-				$data = $database->student_table();
-
-		/*		
-				printf("%s (%s)\n",$row['first_name'],$row['last_name']);
-
-				$test_array = array(
-					array('mark','runner' , '100m'),
-					array('rhian','student' , 'science'),
-					array('chris','grinder' , 'grindermania'),
-					);
-
-				var_dump($test_array);
-
-				echo "</br></br></br></br>";
-*/
-				var_dump($data);
-
-
-				// foreach ($data as $row) {
-    //                 echo '<tr>';
-    //                 echo '<td>'. $row['first_name'] . '</td>';
-    //                 echo '<td>'. $row['last_name'] . '</td>';
-    //                 echo '</tr>';
-    //        }
-?>
-
-
-<div class="container">
+		<div class="container">
             <div class="row">
-                <h3>PHP CRUD Grid</h3>
+                <h3>Students</h3>
             </div>
             <div class="row">
+           	<?php echo "<a href='create_student.php'>Add new student</a></br></br>" ?>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>Last Name</th>
                       <th>First Name</th>
-                      <th>Mobile Number</th>
+                      <th>Last Name</th>
+                      <th>Phone</th>
+                      <th>E-mail</th>
+                      <th>Address</th>
+                      <th>Date Created</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                   <?php
 
-		             foreach ($database->student_table() as $row) {
+                
+		             while($row = mysqli_fetch_array($result)) {
+
+		             	// comment gets the student id from here
+		             	$student_id = 	$row["student_id"];
+
+		             	$first_name = 	$row["first_name"];
+		             	$last_name 	= 	$row["last_name"];
+		             	$phone 		= 	$row["phone"];
+		             	$email 		= 	$row["email"];
+		             	$address 	= 	$row["address"];
+
+	                  	$read 		= 	"<a href= 'profile.php?student_id={$student_id}' >Read</a>";
+	                  	$delete 	= 	"<a href= 'delete.php?student_id={$student_id}' >Delete</a>" ;
+	                  	$update		=	"<a href= 'update.php?student_id={$student_id}&first_name={$first_name}&last_name={$last_name}&phone={$phone}&email={$email}&address={$address}' >Update</a>" ;
+                  	 	
 		                    echo '<tr>';
-		                    echo '<td>'. $row['last_name'] . '</td>';
-		                    echo '<td>'. $row['first_name'] . '</td>';
-		                    echo '<td>'. $row['phone'] . '</td>';
+		                    echo '<td>'. $row["first_name"] . '</td>';
+		                    echo '<td>'. $row["last_name"] . '</td>';
+		                    echo '<td>'. $row["phone"] . '</td>';
+		                    echo '<td>'. $row["email"] . '</td>';
+		                    echo '<td>'. $row["address"] . '</td>';
+		       				echo '<td>'. $row["date_created"] . '</td>';
+		       				echo '<td>' . ' ' . $read . ' ' . $update .' ' . $delete . ' ' . '</td>';
 		                    echo '</tr>';
-		           }
-                  ?>
-                  </tbody>
-            </table>
-        </div>
-    </div> <!-- /container -->
-<?php
+		           				}
+							?>
+		              </tbody>
+           			</table>
+        		</div>
+    			</div> <!-- /container -->
+				<?php
 
+		           echo "</br></br>";	
+		           echo "<a href='create_student.php'>Add new student</a>";
+		           ?>
 
-
-				// $query = "SELECT * FROM example"; 
-	 
-				// $result = mysql_query($query) or die(mysql_error());
-
-
-				/// while($row = mysql_fetch_array($result)){
-				// 		echo $row['name']. " - ". $row['age'];
-				// 		echo "<br />";
-				// 		}				
-
-/*
-			while ($row = $database->student_table()) {
-					echo $row['first_name'] . "   ";
-					echo $row['last_name'] . "   ";
-				}*/
-				?>
 						
 		</div>
 
@@ -109,7 +85,7 @@
 		<div id="validation_message">
 			<!-- does this need to be initiated after the php has been triggered doe?-->
 			
-			<?php echo $validation_message ?>
+			<?php //echo $validation_message ?>
 			
 		</div>
 

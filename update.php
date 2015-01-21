@@ -46,7 +46,19 @@
 
 			// do something to make this only trigger when update form has been submitted
 
+
+			var_dump($_POST['student_id_updated']);
+
 			if (isset($_POST['student_id_updated'])){
+
+				$student_id = $_POST['first_name_updated'];
+				$first_name = $_POST['last_name_updated'];
+				$last_name 	= $_POST['phone_updated'];
+				$phone 		= $_POST['address_updated'];
+				$email 		= $_POST['email_updated'];
+				$address 	= $_POST['student_id_updated'];
+
+					echo "it is set!!";
 
 				$database->update_student($student_id, $first_name, $last_name, $phone, $email, $address);
 

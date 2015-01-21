@@ -38,6 +38,7 @@
 	}
 
 
+
 	public function test($first_name, $last_name ) {
 
 		//mysqli_query($this->connection, "INSERT INTO `student_crm`.`users` (`first_name`, `last_name`, `password`, `email`) VALUES ( 'changes', 'tupac', 'Tes', NULL)");
@@ -194,57 +195,106 @@
 		}
 	}
 
-	public function add_note($student_id) {
 
-		// creates a note for the corresponing student id
-		mysqli_query($this->connection,"" );
-		//is gonna be a join query
-		if (mysqli_affected_rows($this->connection)  >= 1 ) {
-			
-			echo "yeah this workd";
-		
-		} else {
-		
-			echo "nah this didn't work";
-		
-		}
+
+	public function escape_strings($string){
+
+		$escaped_string = mysqli_real_escape_string($this->connection, $string);
+
+		return $escaped_string;
+
 	}
 
-	public function delete_note($student_note_id) {
+
+
+	public function add_note($student_id,$note,$user) {
+
+		$user 		= ucwords($user);
+		// escape strings	
+		//$student_id = mysqli_real_escape_string($this->connection, $student_id);
+		//$note 		= mysqli_real_escape_string($this->connection, $note);
+		//$user 		= mysqli_real_escape_string($this->connection, $user);
+
+		$student_id = $this->escape_strings($student_id);
+		$note 		= $this->escape_strings($note);
+		$user 		= $this->escape_strings($user);
+		// creates a note for the corresponing student id
+		mysqli_query($this->connection, "INSERT INTO `student_notes` (`student_id`, `note`, `user`) VALUES ( '{$student_id}', '{$note}', '{$user}')" );
+		//is gonna be a join query
+
+		if (mysqli_affected_rows($this->connection)  >= 1 ) {
+			
+			return true;
+		
+		} 
+	}
+
+
+	public function delete_note($note_id,$student_id) {
 		// dletes a note for the corresponidng student note id
-		mysqli_query($this->connection,"" );
+		mysqli_query($this->connection,"DELETE FROM `student_notes` WHERE `student_note_id` IN ('{$note_id}')
+" );
 
 
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 			
-			echo "yeah this workd";
+			header("Location: profile.php?student_id={$student_id}");
 		
 		} else {
 		
-			echo "nah this didn't work";
+			echo "Sorry, we couldn't delete your note";
+		   	echo "<a href='profile.php?student_id={$student_id}'>Go back to students page</a>";
 		
 		}
 
 		
+	}
+
+
+	public function show_notes($student_id) {
+
+		// creates a note for the corresponing student id
+			$query = mysqli_query($this->connection, "SELECT * FROM student_notes WHERE `student_id` = '{$student_id}'");
+
+		//$this->array_query = mysqli_fetch_array($query);
+			//$array_query2 = mysqli_fetch_array($query, MYSQLI_ASSOC);
+
+			if (mysqli_affected_rows($this->connection)  >= 1 ) {
+
+			//return $array_query2;
+				return $query;
+		
+			} 
 	}
 
 
 	public function create_student($first_name,$last_name,$phone, $email, $address) {
 		// reads all the details for a student of the corresponding student id
+
+		// stuff we need to do before it gets inserted
+		// uppear case nouns
+
+		$first_name = ucwords($first_name);
+		$last_name 	= ucwords($last_name);
+		$address	= ucwords($address);
+
+
+		// escape strings	
+		$first_name = mysqli_real_escape_string($this->connection, $first_name);
+		$last_name	= mysqli_real_escape_string($this->connection, $last_name);
+		$phone		= mysqli_real_escape_string($this->connection, $phone);
+		$email		= mysqli_real_escape_string($this->connection, $email);
+		$address	= mysqli_real_escape_string($this->connection, $address);
+
 		$query = mysqli_query($this->connection, "INSERT INTO `student_crm`.`students` (`first_name`, `last_name`, `phone`, `email`, `address`) VALUES ('{$first_name}', '{$last_name}', '{$phone}', '{$email}', '{$address}') " );
 
 			//$this->array_query = mysqli_fetch_array($query);
 
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 			
-			echo "yeah this workd";
-		
-		} else {
-		
-			echo "nah this didn't work";
+			header("Location: students.php");
 		
 		}
-		
 	}
 
 
@@ -256,52 +306,18 @@
 
 		  if (mysqli_affected_rows($this->connection)  >= 1 ) {
 		   
-		   echo "yeah this workd";
+		   header("Location: students.php");
 		  
 		  } else {
 		  
-		   echo "nah this didn't work";
+		   echo "Sorry we were unable to delete this student.</br></br></br>";
+		   echo "<a href='students.php'>Go back to students page</a>";
 		  
 		  }
 	  
 	 }
 
 
-
-/*	public function delete_student() {
-		// reads all the details for a student of the corresponding student id
-		//$first = "DELETE FROM students WHERE student_id = " . $student_id;
-
-		$query2 = "DELETE FROM students WHERE first_name='Mark'";
- ;
-
-		//echo $query2;
-
-		//mysqli_query($this->connection, "DELETE FROM students WHERE student_id= {$student_id}");
-
-		mysqli_query($this->connection, $query2);
-		//$real_query = "DELETE FROM students WHERE student_id='{$student_id}'";
-		//$query =  "DELETE FROM students WHERE student_id='{$student_id}'";
-		//$query = mysqli_query($this->connection,"SELECT * FROM students WHERE student_id = '{$student_id}'" );
-
-		//echo "var_dump: ";
-			//var_dump($real_query);
-		//$data = mysqli_fetch_array($query);
-
-		//var_dump($data);
-
-
-		if (mysqli_affected_rows($this->connection)  >= 1 ) {
-			
-			echo "yeah this workd";
-		
-		} else {
-		
-			echo "nah this didn't work";
-		
-		}
-		
-	}*/
 
 
 	public function student_table() {
@@ -316,11 +332,8 @@
 			
 			//echo "yeah this workd";
 
-			return $array_query2;
-		
-		} else {
-		
-			echo "nah this didn't work";
+			//return $array_query2;
+			return $query;
 		
 		}
 		
@@ -339,12 +352,12 @@
 
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 			
-			echo "yeah this workd";
+			return true;
 
 		
 		} else {
 		
-			echo "nah this didn't work";
+			return false;
 		
 		}
 		
@@ -355,7 +368,7 @@
 			//somehow intergrate a read query that sets the default to the exiting becaus
 				// it may overwrite it will bullshit
 		//updates all the details for each of the variables
-		mysqli_query($this->connection,"UPDATE `students` SET `first_name` = '{$first_name}', `last_name` = '{$last_name}', `email` = '{$email}', `address` = '{$address}' WHERE `student_id` = '{$student_id}';");
+		mysqli_query($this->connection,"UPDATE `students` SET `first_name` = '{$first_name}', `last_name` = '{$last_name}', `email` = '{$email}', `address` = '{$address}' WHERE `student_id` = {$student_id}");
 
 
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
@@ -374,6 +387,12 @@
 		// addd the details of a new user to the user database;
 		
 		// simple SQL insert query
+		$username 	= $this->escape_strings($username);
+		$first_name = $this->escape_strings($first_name);
+		$last_name 	= $this->escape_strings($last_name);
+		$password 	= $this->escape_strings($password);
+		$email 		= $this->escape_strings($email);
+
 		mysqli_query($this->connection,"INSERT INTO `student_crm`.`users` (`username`,`first_name`, `last_name`, `password`, `email`) VALUES ( '{$user_name}','{$first_name}', '{$last_name}', '{$password}', '{$email}')" );
 
 		//header to login page
