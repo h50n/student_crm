@@ -54,27 +54,28 @@
 			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
 			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
 			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
-			HB6hG4AHoR2ACIAJUjI1CdIiIyQlWiRjbGFzc25hbWVYJGNsYXNz
-			ZXNfEBNOU011dGFibGVEaWN0aW9uYXJ5oyQmJ1xOU0RpY3Rpb25h
-			cnlYTlNPYmplY3TSCgspK6EqgAuADdILLS4vWU5TLnN0cmluZ4AM
-			WnN0dWRlbnRfaWTSIiMxMl8QD05TTXV0YWJsZVN0cmluZ6MxMydY
-			TlNTdHJpbmfSIiM1Nl5OU011dGFibGVBcnJheaM1NydXTlNBcnJh
-			edIiIyY5oiYnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAI
-			ABEAGgAjAC0AMgA3AEkATwBWAF4AaQBwAHQAdgB4AHoAfgCAAIIA
-			hACGAIsAkACVAL4AxQDHAMkAywDNAM8A0gDTANgA4wDsAQIBBgET
-			ARwBIQEjASUBJwEsATYBOAFDAUgBWgFeAWcBbAF7AX8BhwGMAY8B
-			oQGkAakAAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABqw==
+			HB6hG4AHoR2ACIAJUTgJ0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nl
+			c18QE05TTXV0YWJsZURpY3Rpb25hcnmjJCYnXE5TRGljdGlvbmFy
+			eVhOU09iamVjdNIKCykroSqAC4AN0gstLi9ZTlMuc3RyaW5ngAxf
+			EBBzdHVkZW50X2ltYWdlX2lk0iIjMTJfEA9OU011dGFibGVTdHJp
+			bmejMTMnWE5TU3RyaW5n0iIjNTZeTlNNdXRhYmxlQXJyYXmjNTcn
+			V05TQXJyYXnSIiMmOaImJ18QD05TS2V5ZWRBcmNoaXZlctE8PVRk
+			YXRhgAEACAARABoAIwAtADIANwBJAE8AVgBeAGkAcAB0AHYAeAB6
+			AH4AgACCAIQAhgCLAJAAlQC+AMUAxwDJAMsAzQDPANEA0gDXAOIA
+			6wEBAQUBEgEbASABIgEkASYBKwE1ATcBSgFPAWEBZQFuAXMBggGG
+			AY4BkwGWAagBqwGwAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAA
+			AAAAAbI=
 			</data>
 			<key>contentSortColIsAsc</key>
-			<true/>
+			<false/>
 			<key>contentViewport</key>
-			<string>{{0, 0}, {705.5, 623}}</string>
+			<string>{{0, 0}, {838, 623}}</string>
 			<key>isToolbarVisible</key>
 			<true/>
 			<key>table</key>
-			<string>students</string>
+			<string>student_images</string>
 			<key>view</key>
-			<string>SP_VIEW_CONTENT</string>
+			<string>SP_VIEW_STRUCTURE</string>
 			<key>windowVerticalDividerPosition</key>
 			<real>202</real>
 		</dict>

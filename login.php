@@ -8,16 +8,19 @@
 	<?php
 
 		include_once 'classes.php';
+		include_once 'includes.php';
+
 		$test_submit = new Database;
 		$test_submit -> connect();
 
 
 	?>
-		<div id="login_form">
-			<form action = "login.php" method = "post" >
-				Username<input type="text" name="username">
-				Password<input type= "password" name="password">
-				<input type = "submit">
+		<div id="login_form" class"form-inline">
+
+			<form action = "login.php" method = "post"  class"form-inline">
+				Username<input type="text" name="username" class="form-control" placeholder="Username"></br>
+				Password<input type= "password" name="password" class="form-control" placeholder="Password"></br>
+				<input type = "submit" class="btn btn-default">
 			</form>
 
 			<a href="signup.php"> Sign up</a>
@@ -42,6 +45,9 @@
 
 				echo "hello World </br></br>";
 
+				//when logining in, must sent the student_id to
+				//the profile page as a get query
+
 			?>
 
 		<div id="validation_message">
@@ -56,7 +62,10 @@
 
 				var_dump($test_submit->user_id) ;
 				echo "</br></br></br>";
+
 				var_dump($new_variable["user_id"]);
+
+				//is there a command that overwries the date in the class? if so maybe I can do that here
 
 				//extract the id from the database and put it into the login page header
 					// save it as a variable somewhere

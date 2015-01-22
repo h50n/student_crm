@@ -11,7 +11,7 @@
 	<?php
 
 		include_once 'classes.php';
-
+		include_once 'includes.php';
 		//$student_note_id = $_GET["student_note_id"];
 		$student_note_id 	= $_GET['student_note_id'];
 		$student_id 		= $_GET['student_id'];

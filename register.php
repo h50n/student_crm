@@ -3,22 +3,24 @@
 		
 
 
+
 	</head>
 	<body>
 
 	<?php 
 			include_once 'classes.php';
+			include_once 'includes.php';
 	?>
 		<h1>Register to Become a User</h1>
 
-		<div id="register_form">
+		<div id="register_form" class="form-inline">
 			<form action = "register.php" method = "post" >
-				First Name<input type="text" name="first_name"></br>
-				Last Name<input type="text" name="last_name"></br>
-				Username<input type="text" name="username"></br>
-				Password<input type="password" name="password"></br>
-				E-mail<input type= "text" name="email"></br>
-				<input type = "submit" value = "login">
+				First Name <input type="text" name="first_name" class="form-control" placeholder="First Name"></br>
+				Last Name <input type="text" name="last_name" class="form-control" placeholder="Last Name"></br>
+				Username <input type="text" name="username" class="form-control" placeholder="Username"></br>
+				Password <input type="password" name="password" class="form-control" placeholder="Password"></br>
+				E-mail <input type= "text" name="email" class="form-control" placeholder="E-mail"></br>
+				<input type = "submit" value = "login" class="btn btn-defult">
 			</form>
 		</div>
 

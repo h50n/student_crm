@@ -105,61 +105,55 @@
 	}
 
 
-	public function upload_picture($student_id) {
+	public function upload_picture($student_id, $filename) {
 	 //add psuedo code of what each function needs to do
 		//make sql version of it
 
 		//creates the end of the image url for the picture to the corresponding student id
+		$this->clean_input($filename);
+
+		mysqli_query($this->connection,"INSERT INTO `student_images` (`student_id`, `file_location`)
+VALUES
+	( '{$student_id}', '{$filename}')");
+
+	if (mysqli_affected_rows($this->connection)  >= 1 ) {
+			
+			// head back to the profile page of the student id;
 		
-		mysqli_query($this->connection,"" );
-
-			//fix this up	
-			$target_dir = "uploads/";
-			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-			$uploadOk = 1;
-			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-			// Check if image file is a actual image or fake image
-			if(isset($_POST["submit"])) {
-			    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-			    if($check !== false) {
-			        echo "File is an image - " . $check["mime"] . ".";
-			        $uploadOk = 1;
-			    } else {
-			        echo "File is not an image.";
-			        $uploadOk = 0;
-			    }
-			}
-			// Check if file already exists
-			if (file_exists($target_file)) {
-			    echo "Sorry, file already exists.";
-			    $uploadOk = 0;
-			}
-			// Check file size
-			if ($_FILES["fileToUpload"]["size"] > 500000) {
-			    echo "Sorry, your file is too large.";
-			    $uploadOk = 0;
-			}
-			// Allow certain file formats
-			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-			&& $imageFileType != "gif" ) {
-			    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-			    $uploadOk = 0;
-			}
-			// Check if $uploadOk is set to 0 by an error
-			if ($uploadOk == 0) {
-			    echo "Sorry, your file was not uploaded.";
-			// if everything is ok, try to upload file
-			} else {
-			    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-			    } else {
-			        echo "Sorry, there was an error uploading your file.";
-			    }
-			}
-
+		} else {
+		
+			echo "this didn't work";
+			echo "<a href='profile.php?student_id={$student_id}'> Click here to go back to the profile page</a>";
+		
+		}
+		
+			//sort out the code to take the filename and add
+			//it to the db
 
 
 	}
+
+	public function show_picture($student_id){
+
+
+		//$login_query = mysqli_query($this->connection, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}'");
+
+		$query = mysqli_query($this->connection , "SELECT * FROM `student_images` WHERE `student_id` = '{$student_id}'");
+
+		$fetch_array = mysqli_fetch_array($query);
+
+		//$this->user_id = $fetch_array["user_id"];
+
+		//var_dump($fetch_array);
+		//var_dump($fetch_array["file_location"]);
+
+		$file_location = $fetch_array["file_location"];
+
+		return $file_location;
+
+	}
+
+
 
 	public function edit_picture($student_image_id) {
 		//
@@ -197,11 +191,13 @@
 
 
 
-	public function escape_strings($string){
+	public function clean_input($string){
 
-		$escaped_string = mysqli_real_escape_string($this->connection, $string);
+		$string = trim($string);
+		$string = stripslashes($string);
+		$string = htmlspecialchars($string);
 
-		return $escaped_string;
+		return $string;
 
 	}
 
@@ -215,9 +211,9 @@
 		//$note 		= mysqli_real_escape_string($this->connection, $note);
 		//$user 		= mysqli_real_escape_string($this->connection, $user);
 
-		$student_id = $this->escape_strings($student_id);
-		$note 		= $this->escape_strings($note);
-		$user 		= $this->escape_strings($user);
+		$student_id = $this->clean_input($student_id);
+		$note 		= $this->clean_input($note);
+		$user 		= $this->clean_input($user);
 		// creates a note for the corresponing student id
 		mysqli_query($this->connection, "INSERT INTO `student_notes` (`student_id`, `note`, `user`) VALUES ( '{$student_id}', '{$note}', '{$user}')" );
 		//is gonna be a join query
@@ -280,11 +276,11 @@
 
 
 		// escape strings	
-		$first_name = mysqli_real_escape_string($this->connection, $first_name);
-		$last_name	= mysqli_real_escape_string($this->connection, $last_name);
-		$phone		= mysqli_real_escape_string($this->connection, $phone);
-		$email		= mysqli_real_escape_string($this->connection, $email);
-		$address	= mysqli_real_escape_string($this->connection, $address);
+		$first_name = $this->clean_input($first_name);
+		$last_name	= $this->clean_input($last_name);
+		$phone		= $this->clean_input($phone);
+		$email		= $this->clean_input($email);
+		$address	= $this->clean_input($address);
 
 		$query = mysqli_query($this->connection, "INSERT INTO `student_crm`.`students` (`first_name`, `last_name`, `phone`, `email`, `address`) VALUES ('{$first_name}', '{$last_name}', '{$phone}', '{$email}', '{$address}') " );
 
@@ -386,12 +382,12 @@
 	public function register_user($username, $first_name, $last_name, $password, $email) {
 		// addd the details of a new user to the user database;
 		
-		// simple SQL insert query
-		$username 	= $this->escape_strings($username);
-		$first_name = $this->escape_strings($first_name);
-		$last_name 	= $this->escape_strings($last_name);
-		$password 	= $this->escape_strings($password);
-		$email 		= $this->escape_strings($email);
+		// simple SQL insert query 
+		$username 	= $this->clean_input($username);
+		$first_name = $this->clean_input($first_name);
+		$last_name 	= $this->clean_input($last_name);
+		$password 	= $this->clean_input($password);
+		$email 		= $this->clean_input($email);
 
 		mysqli_query($this->connection,"INSERT INTO `student_crm`.`users` (`username`,`first_name`, `last_name`, `password`, `email`) VALUES ( '{$user_name}','{$first_name}', '{$last_name}', '{$password}', '{$email}')" );
 
@@ -429,6 +425,71 @@
 	public function end_session() {
 
 		
+	}
+
+	public function create_student_validation($first_name, $last_name, $phone, $email, $address) {
+
+		// store all of the flopped variables inside of an array
+		$errors = array();
+		$success = true;
+
+		//when empty
+		if (empty($first_name)){
+			$errors[] = "please enter your first name";
+			$success = false;
+		}
+
+		if (empty($last_name)){
+			$errors[] = "please enter your last name";
+			$success = false;
+		}
+
+		if (empty($phone)){
+			$errors[] = "please enter your phone number";
+			$success = false;
+		}
+
+		if (empty($email)){
+			$errors[] = "please enter your email address";
+			$success = false;
+		}
+
+		if (empty($address)){
+			$errors[] = "please enter you address";
+			$success = false;
+		}
+
+
+		// correct format name
+		if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+  			$errors[] = "please check your first name only letters and white space allowed";
+  			$success = false; 
+		}
+
+		if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+  			$errors[] = "please check your last name only letters and white space allowed";
+  			$success = false; 
+		}
+		//correct format phone
+			//sort this one out later
+
+
+
+		//correct format email
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+ 			 $errors[] = "please check your email address, invalid email format";
+ 			 $success = false; 
+		}
+
+		if ($success == true ){
+
+			return true;	
+
+		} else {
+
+			return $errors;
+
+		}
 	}
 
 }

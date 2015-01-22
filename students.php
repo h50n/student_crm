@@ -8,13 +8,15 @@
 		<?php 
 			
 			include_once 'classes.php';
+			include_once 'includes.php';
+			
 			$database = new Database;
 			$database -> connect();
 			$result = $database->student_table();
 
 			?>
 
-		<div id = "table">
+		<div class="table-responsive" id = "table">
 
 		<div class="container">
             <div class="row">
@@ -22,7 +24,7 @@
             </div>
             <div class="row">
            	<?php echo "<a href='create_student.php'>Add new student</a></br></br>" ?>
-                <table class="table table-striped table-bordered">
+                <table class="table">
                   <thead>
                     <tr>
                       <th>First Name</th>

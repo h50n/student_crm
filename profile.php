@@ -11,6 +11,8 @@
 	<?php
 
 		include_once 'classes.php';
+		include_once 'includes.php';
+
 		$database = new Database;
 		$database -> connect();
 
@@ -34,17 +36,32 @@
 
 		<div id ="upload_image">
 
-			<form action="login.php" method="post">
-				<!-- sort out folder permissions-->
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+			    Select image to upload:
+			    <input type="file" name="fileToUpload" id="fileToUpload">
+			    <input type="submit" value="Upload Image" name="submit">
+			    <input type ="hidden" name = "student_id" value="<?php echo $student_id ?>" >
 			</form>
-
 		</div>
+
 		<?php 
 			$first_name = $contact_details["first_name"];
 			$last_name 	= $contact_details["last_name"];
 			//$student_id = $contact_details["student_id"];
 
 		?>
+		<div id="show_image">
+			
+
+			<?php $profile_picture = $database->show_picture($student_id); 
+			
+			if(isset($profile_picture)){
+
+				echo "<img src='uploads/{$profile_picture}'>";
+			}
+
+			?>
+		</div>
 
 		<div id ="buttons">
 			<!-- call button and delete buttons / links will go here-->
@@ -56,7 +73,7 @@
 		           <!-- comment sectiion-->
 		         Add a comment!</br></br>    
 	           	<form action = <?php echo "profile.php?student_id={$student_id}" ?> method = "post" id="note_form" >
-					<input type= "hidden" name="student_id" value = <?php echo "{$student_id}" ?> >
+					<input type= "hidden" name="student_id" value = "<?php echo $student_id; ?>" >
 					User:</br><input type= "text" name="user" ></br>
 					Note:</br><textarea rows="4" cols="50" name="note" form="note_form"></textarea>
 					</br><input type = "submit"></br></br>
