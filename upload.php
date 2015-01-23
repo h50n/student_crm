@@ -26,7 +26,7 @@
 
 
 			// Check if image file is a actual image or fake image
-			if(isset($_POST["submit"])) {
+			if($_SERVER["REQUEST_METHOD"] == "POST") {
 			    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 			    if($check !== false) {
 			        echo "File is an image - " . $check["mime"] . ".";

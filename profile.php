@@ -20,7 +20,7 @@
 		$database->read_student($student_id);
 
 		$contact_details = $database->array_query;
-
+		$phone = $contact_details["phone"];
 
 
 	?>
@@ -31,7 +31,10 @@
 			Last Name:	<?php echo $contact_details["last_name"] ?></br></br>
 			Address: 	<?php echo $contact_details["address"] ?></br></br>
 			e-mail: 	<?php echo $contact_details["email"] ?></br></br>
-			phone:		<?php echo $contact_details["phone"] ?></br></br>
+			Phone:		<?php echo $contact_details["phone"] ?></br></br></br></br>
+			</br></br>
+
+
 		</div>
 
 		<div id ="upload_image">
@@ -65,7 +68,8 @@
 
 		<div id ="buttons">
 			<!-- call button and delete buttons / links will go here-->
-				<?php echo "<a href='delete.php?student_id={$student_id}'>Delete Student</a></br></br>" ; ?>
+				<?php echo "<a href='delete.php?student_id={$student_id}'>Delete Student</a></br></br>" ; ?></br></br>
+				<?php echo "<a href='call-request.php?phone={$phone}'> Call Student</a>" ?> 
 			<!-- a link that goes to the delete page conting the id variable-->
 		</div>
 

@@ -38,7 +38,7 @@
 
 			$database 	=	new Database;
 			$database 	-> 	connect();
-			$database 	->	create_student_validation($first_name, $last_name, $phone, $email, $address);
+			//$database 	->	create_student_validation($first_name, $last_name, $phone, $email, $address);
 
 			// this should only run if all things are correct
 
@@ -62,11 +62,11 @@
 
 		<div id="validation_message">
 			<!-- does this need to be initiated after the php has been triggered doe?-->
-			<?php if (isset($validation_message)) { 
-					var_dump($validation_message);
+			<?php if (isset($database->errors)) { 
+					var_dump($database->errors);
 					//make while loop echo out all the contents of the error
 
-						while ($row = $validation_message) {
+						while ($row = $database->errors) {
 							var_dump($row);
 							
 						}

@@ -26,6 +26,8 @@
 	public $profile = null;
 	public $array_query = null;
 	public $user_id = null;
+	public $success = null;
+	public $errors	= null;
 
 		//put all variables into brackets and insert them from the html
 	public function connect() {
@@ -62,7 +64,7 @@
 			//sort out the encryption stuff thoug
 
 			//1 select query
-		;
+		$password = md5($password);
 
 		//if array = 0 reload
 			//if arra = >0 header to page and staty session
@@ -196,6 +198,11 @@ VALUES
 		$string = trim($string);
 		$string = stripslashes($string);
 		$string = htmlspecialchars($string);
+
+		// $string = trim($string)->stripslashes($string)->htmlspecialchars($string);
+
+
+
 
 		return $string;
 
@@ -383,19 +390,25 @@ VALUES
 		// addd the details of a new user to the user database;
 		
 		// simple SQL insert query 
+
+
+
 		$username 	= $this->clean_input($username);
 		$first_name = $this->clean_input($first_name);
 		$last_name 	= $this->clean_input($last_name);
 		$password 	= $this->clean_input($password);
+		$password 	= md5($password);
 		$email 		= $this->clean_input($email);
 
-		mysqli_query($this->connection,"INSERT INTO `student_crm`.`users` (`username`,`first_name`, `last_name`, `password`, `email`) VALUES ( '{$user_name}','{$first_name}', '{$last_name}', '{$password}', '{$email}')" );
+		mysqli_query($this->connection,"INSERT INTO `student_crm`.`users` (`username`,`first_name`, `last_name`, `password`, `email`) VALUES ( '{$username}','{$first_name}', '{$last_name}', '{$password}', '{$email}')" );
 
 		//header to login page
 		if (mysqli_affected_rows($this->connection)  >= 1 ) {
 
 			// header to login page
-				echo "yeah this workd";
+				$this->success = "this was successful";
+
+				return  $this->success;
 			// validation message says, thank you for sining up, now log in!!!
 		} else {
 
@@ -487,7 +500,7 @@ VALUES
 
 		} else {
 
-			return $errors;
+			return $this->errors;
 
 		}
 	}

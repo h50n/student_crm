@@ -26,12 +26,13 @@
 
 		<?php 
 
-		if (isset($_POST["first_name"])) {
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		$first_name = $_POST["first_name"];
 		$last_name	= $_POST["last_name"];	
 		$password  	= $_POST["password"];
 		$email  	= $_POST["email"];
+		$username 	= $_POST["username"];
 
 		$database = new Database;
 		$database -> connect();
@@ -50,7 +51,7 @@
 
 		<div id="validation_message">
 			<!-- does this need to be initiated after the php has been triggered doe?-->
-			<?php //echo $validation_message; ?>
+			<?php  echo $database->success; ?>
 
 			
 		</div>
